@@ -1,0 +1,80 @@
+.header img {
+ float: right;
+ width: auto;
+ height: 85px;
+ padding: 20px;
+}
+
+body {
+ margin: 0;
+ padding: 0;
+ font-family: 'Source Sans Pro', sans-serif;
+ font-size: 14px;
+}
+
+h1{
+ font-family: 'Source Sans Pro', sans-serif;
+ color: #337ab7;
+}
+h2,
+h3 {
+ margin: 10px;
+ font-size: inherit;
+ font-family: 'Source Sans Pro', sans-serif;
+ color: grey;
+}
+
+h3 {
+ font-size: 1em;
+ font-family: 'Source Sans Pro', sans-serif;
+}
+
+p {
+ font-size: 0.85em;
+ margin: 10px;
+ text-align: left;
+}
+
+#map {
+ position: absolute;
+ top: 150px;
+ bottom: 0;
+ width: 100%;
+}
+
+ul {
+ list-style-type: none;
+ margin: 1px;
+ padding: 1px;
+ overflow: hidden;
+ background-color: white;
+}
+
+li {
+ float: left;
+ border-right: 2px solid white;
+}
+
+/* Add a border to all( but not the last) list items */
+li:last-child {
+ border-right: none;
+}
+
+li a {
+ display: block;
+ color: #337ab7;
+ text-align: left;
+ padding: 15px 17px;
+ text-decoration: none;
+}
+
+/* Links will change color when hovered over */
+li a:hover {
+ background-color: #337ab7;
+ color: white;
+}
+
+.active {
+ background-color: #337ab7;
+ color: white;
+}

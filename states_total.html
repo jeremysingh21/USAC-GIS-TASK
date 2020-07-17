@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>USAC E-Rate Requests</title>
+  <div class="header">
+    <img src="img/usac_logo.png" alt="logo" />
+    <h1> 2018 E-Rate Request for Discount on Services </h1>
+  </div>
+  <!-- Add Mapbox GL JS JavaScript file -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+  <!-- Add in the Mapbox GL JS CSS file -->
+  <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+
+  <!-- Add CSS styling info for the map -->
+  <style type="text/css">
+    /**
+    * Create a position for the map
+    * on the page */
+     /**
+    * Set rules for how the map overlays
+    * (information box and legend) will be displayed
+    * on the page. */
+    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.8);
+      margin-right: 20px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: 3px;
+    }
+
+    #features {
+      top: 150px;
+      height: 100px;
+      margin-top: 20px;
+      width: auto;
+    }
+
+    #legend {
+      padding: 10px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      line-height: 18px;
+      height: auto;
+      margin-bottom: 40px;
+      width: auto;
+    }
+
+    .legend-key {
+      display: inline-block;
+      border-radius: 20%;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
+
+  </style>
+  <!-- Adding styling info for page layout by reading in a CSS file -->
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+<h2> Funding Requests by State </h2>
+  <!-- Add multiple pages to web page-->
+  <!-- active class displays the grey box around current page-->
+  <ul>
+    <li><a href="index.html" target="_self">Requests by Organization</a></li>
+  	<li><a class="active" href="index.html" target="_self">Requests by States </a></li>
+  </ul>
+  <br>
+  <!-- Add a div to give the map somewhere to go -->
+  <div id='map'></div>
+  <div class='map-overlay' id='features'><h2></h2>
+    <div id='pd'><p>Hover over a state for Information</p></div></div>
+  <div class='map-overlay' id='legend'></div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoianNpbmdoMTYiLCJhIjoiY2s1cXNzOWhnMDV2NjNsbTY2cGUzcDUwdiJ9.qsLu1va7RddUXZMBXKXKww';
+    var map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: 'mapbox://styles/jsingh16/ckco6vtyo3amu1kpe7bqfdhe3' // replace this with your style URL
+    });
+    map.on('load', function() {
+  // the rest of the code will go in here
+    var layers = ['No Value', '1-130,000', '130,001-500,000', '500,001-2,000,000', '2,000,000+'];
+    var colors = ['#dddcda', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A',];
+
+    for (i = 0; i < layers.length; i++) {
+      var layer = layers[i];
+      var color = colors[i];
+      var item = document.createElement('div');
+      var key = document.createElement('span');
+      key.className = 'legend-key';
+      key.style.backgroundColor = color;
+
+      var value = document.createElement('span');
+      value.innerHTML = layer;// calls the value span and appends current layers break
+      item.appendChild(key);//appends the key (color)
+      item.appendChild(value); //appends to layer value to 'small item div within 'legend div'
+      legend.appendChild(item);// appends to legend div
+    }
+    });
+    map.on('mousemove', function(e) {
+
+      var bbox = [
+      [e.point.x - 2, e.point.y - 2],
+      [e.point.x + 2, e.point.y + 2]
+      ];
+      var states = map.queryRenderedFeatures(bbox, {
+      layers: ['state-total']
+      });
+
+      if (states.length > 0) {
+        document.getElementById('pd').innerHTML = '<h3><strong>' + states[0].properties.NAME +
+        '</strong></h3><p><strong><em> Funding Amount Requested ($): ' +  '</strong>'+states[0].properties.funding_request_amount +
+        '</strong></em></p>';//writes the name of state and density to hover over element
+      } else {
+        document.getElementById('pd').innerHTML = '<p>Hover over a state for Information</p>';
+      }
+    });
+      </script>
+</html>
