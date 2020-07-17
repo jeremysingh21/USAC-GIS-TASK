@@ -4,9 +4,9 @@ The following repo contains files that construct two maps using the E-Rate data 
 The data was acquired from the [E-rate Request for Discount on Services: Basic Information](https://opendata.usac.org/E-rate/E-rate-Request-for-Discount-on-Services-Basic-Info/9s6i-myen)
 dataset. Using the [USAC_Data.py](https://github.com/jeremysingh21/USAC-GIS-TASK/blob/master/USAC_Data.ipynb), the socarata api was accessed to pull the requested data.
 ## Web Maps
-Two web maps were constructed using MapboxGL and Mapbox studio. The maps is [hosted here](https://jeremysingh21.github.io/USAC-GIS-TASK/index.html)
+Two web maps were constructed using MapboxGL and Mapbox studio. Web Maps [hosted here](https://jeremysingh21.github.io/USAC-GIS-TASK/index.html)
 
-The page contains two tabs-
+The page contains two web maps-
 
 **Map 1: Funding by Organization**: Points in the web map represent organizations that requested e-rate funding in 2018. The requested funding amount shown is aggregated at the organization leveland will be shown in the pop-up when point is clicked. The html/js code for this can be found under [index.html](https://github.com/jeremysingh21/USAC-GIS-TASK/blob/master/index.html)
 
